@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fm.mapper.PersonnelManagementMapper">
+
+    <insert id="insertAdmin">
+        insert into administrator(adminName, adminPassword, permission, createTime, updateTime)
+        values(#{adminName}, #{adminPassword}, #{permission}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="updateAdmin" parameterType="POJO.Login.AdminLoginRequest">
+        update administrator
+        set
+        <if test="adminName != null">
+            adminName = #{adminName},
+        </if>
+        <if test="adminPassword != null">
+            adminPassword = #{adminPassword},
+        </if>
+        <if test="permission != null">
+            permission = #{permission},
+        </if>
+        updateTime = #{updateTime}
+        where id = #{id}
+    </update>
+
+    <select id="selectByAdminName" resultType="java.lang.Integer">
+        select count(*) from administrator where adminName = #{adminName}
+    </select>
+
+    <select id="selectAll" resultType="POJO.Login.AdminLoginRequest">
+        select * from administrator
+        order by ${sortField} ${sortOrder}
+        limit #{offset}, #{size}
+    </select>
+
+</mapper>

@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  Tools.Config.MvcConfig,\
+  Tools.Config.JacksonConfig,\
+  Tools.KafkaTool.DataProcess

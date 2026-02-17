@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fm.Mapper.CartMapping">
+
+    <update id="ReduceInventory">
+        update goods set stock = stock - #{quantity} where id = #{id}
+    </update>
+
+    <update id="IncreaseInventory">
+        update goods set stock = stock + #{quantity} where id = #{id}
+    </update>
+
+    <select id="selectStockAndStatusAndPrice" resultType="POJO.commodity.goods">
+        select stock, status, price from goods where id = #{id}
+    </select>
+
+    <select id="selectCartProductItemsBatch" resultType="POJO.commodity.goods">
+        select * from goods where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectCommdityByID" resultType="POJO.ODS.CommodityRankData">
+        select * from goods where id = #{id}
+    </select>
+
+</mapper>

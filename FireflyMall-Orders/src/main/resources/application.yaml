@@ -1,0 +1,42 @@
+server:
+  port: 8084
+  address: 0.0.0.0
+
+spring:
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+  rabbitmq:
+    host: server
+    port: 5672
+    virtual-host: /
+    username: fufu
+    password: 123456
+    connection-timeout: 1s
+    listener:
+      simple:
+        prefetch: 1 # 每次只能获取一条消息，处理完成后再获取下一条
+        acknowledge-mode: auto # 自动确认
+        retry:
+          enabled: true
+          initial-interval: 1000ms
+          max-attempts: 3
+          multiplier: 1
+          stateless: false # 状态ful，每次重试时会携带上一次的状态
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+        multiplier: 1
+    publisher-confirm-type: none
+    publisher-returns: false
+
+
+
+
+FireflyMall:
+  db:
+    host: localhost
+    port: 3306

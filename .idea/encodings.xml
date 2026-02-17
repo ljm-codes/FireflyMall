@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/FireflyMall-AuthGate/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-AuthGate/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-GateMay/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-GateMay/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Merchant/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Merchant/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Orders/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Orders/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Pay/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Pay/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-ProductShow/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-ProductShow/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-RTDP/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-RTDP/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Tool/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-Tool/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-cart/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/FireflyMall-cart/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

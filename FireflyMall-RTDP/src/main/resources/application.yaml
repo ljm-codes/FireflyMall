@@ -1,0 +1,29 @@
+server:
+  port: 8086
+  address: 0.0.0.0
+
+spring:
+  kafka:
+    bootstrap-servers: node1:9092,node2:9092,node3:9092
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer # 反序列化器
+      group-id: FireflyMall-RTDP
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      properties:
+        partition.assignment.strategy: org.apache.kafka.clients.consumer.CooperativeStickyAssignor
+        spring.json.trusted.packages: "*"
+    #        spring.json.value.default.type: POJO.DataList
+    listener:
+      poll-timeout: 1000 # 轮询超时时间
+      concurrency: 1 # 并发数
+
+# 数据库配置 - Doris
+FireflyMall:
+  db:
+    host: node1
+    port: 9030
+    database: FireflyMall
+
+

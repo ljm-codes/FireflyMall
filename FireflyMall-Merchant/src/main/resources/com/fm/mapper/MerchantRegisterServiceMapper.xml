@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fm.mapper.MerchantRegisterServiceMapper">
+    <insert id="insert" parameterType="com.fm.POJO.MerchantDetailedInfo">
+        insert into merchant (merchantName, province, city, district, address, phone, email, remark, confidenceLevel,
+                              merchantPassword)
+        values (#{merchantName}, #{province}, #{city}, #{district}, #{address}, #{phone}, #{email}, #{remark},
+                #{confidenceLevel},
+                #{merchantPassword})
+    </insert>
+
+    <select id="selectByMerchantName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from merchant where merchantName = #{merchantName}
+    </select>
+</mapper>

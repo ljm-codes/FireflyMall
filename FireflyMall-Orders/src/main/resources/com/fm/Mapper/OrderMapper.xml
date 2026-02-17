@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fm.Mapper.OrderMapper">
+
+    <insert id="createOrder">
+        insert into `order`(orderId, userId, totalAmount, status, receiptAddress, remark) value
+            (#{orderId}, #{userId}, #{totalAmount}, #{status}, #{receiptAddress}, #{remark})
+    </insert>
+
+    <insert id="addOldOrderItem">
+        insert into oldercart(orderId, userId, goodsId, quantity) value
+            <foreach collection="items" index="index" item="item" separator=",">
+                (#{orderId}, #{userId}, #{item.goodsId}, #{item.quantity})
+            </foreach>
+    </insert>
+
+    <update id="updateOrderStatus">
+        update `order` set status = #{i} where orderId = #{orderId}
+    </update>
+
+    <update id="confirmOrderStatus">
+        update `order` set receiveTime = #{now} where orderId = #{orderId}
+    </update>
+
+    <select id="getGoods" resultType="POJO.commodity.goods">
+        select * from goods where id in
+        <foreach collection="goodsIds" item="goodsId" open="(" close=")" separator=",">
+            #{goodsId}
+        </foreach>
+    </select>
+
+    <select id="getOrderItem" resultType="POJO.Order.OrderItem">
+        select * from oldercart where orderId = #{orderId} and userId = #{userId}
+    </select>
+
+    <select id="getOrderRoughInfoList" resultType="POJO.Order.OrderInfo">
+        select * from `order` where userId = #{userId}
+    </select>
+    <select id="getPayTime" resultType="java.time.LocalDateTime">
+        select payTime from `order` where orderId = #{orderId}
+    </select>
+
+</mapper>

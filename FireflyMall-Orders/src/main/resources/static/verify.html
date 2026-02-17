@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位诊断工具</title>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=499c03875f161d04b20286be08515638"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        button { padding: 10px 15px; margin: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+<h1>定位问题诊断</h1>
+
+<div class="test-section">
+    <h3>1. 浏览器定位支持检测</h3>
+    <button onclick="testBrowserGeolocation()">测试浏览器原生定位</button>
+    <div id="browserResult"></div>
+</div>
+
+<div class="test-section">
+    <h3>2. 高德地图API检测</h3>
+    <button onclick="testAMapAPI()">测试高德地图API</button>
+    <div id="amapResult"></div>
+</div>
+
+<div class="test-section">
+    <h3>3. 完整定位流程测试</h3>
+    <button onclick="testFullLocation()">测试完整定位流程</button>
+    <div id="fullResult"></div>
+</div>
+
+<div class="test-section">
+    <h3>4. 环境信息</h3>
+    <div id="envInfo"></div>
+</div>
+
+<script>
+    // 显示环境信息
+    function showEnvInfo() {
+        const envInfo = document.getElementById('envInfo');
+        envInfo.innerHTML = `
+        <p>协议: ${window.location.protocol}</p>
+        <p>主机: ${window.location.host}</p>
+        <p>用户代理: ${navigator.userAgent}</p>
+        <p>在线状态: ${navigator.onLine ? '在线' : '离线'}</p>
+        <p>地理位置支持: ${'geolocation' in navigator ? '支持' : '不支持'}</p>
+    `;
+    }
+
+    // 测试浏览器原生定位
+    function testBrowserGeolocation() {
+        const resultDiv = document.getElementById('browserResult');
+        resultDiv.innerHTML = '<p class="info">正在请求浏览器定位权限...</p>';
+
+        if (!navigator.geolocation) {
+            resultDiv.innerHTML = '<p class="error">浏览器不支持地理位置定位</p>';
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const coords = position.coords;
+                resultDiv.innerHTML = `
+                <p class="success">✅ 浏览器定位成功！</p>
+                <p>纬度: ${coords.latitude}</p>
+                <p>经度: ${coords.longitude}</p>
+                <p>精度: ${coords.accuracy} 米</p>
+            `;
+            },
+            (error) => {
+                let errorMsg = '';
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMsg = '用户拒绝了位置权限请求';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMsg = '位置信息不可用';
+                        break;
+                    case error.TIMEOUT:
+                        errorMsg = '定位请求超时';
+                        break;
+                    default:
+                        errorMsg = '未知错误';
+                }
+                resultDiv.innerHTML = `<p class="error">❌ 浏览器定位失败: ${errorMsg}</p>`;
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+    }
+
+    // 测试高德地图API
+    function testAMapAPI() {
+        const resultDiv = document.getElementById('amapResult');
+        resultDiv.innerHTML = '<p class="info">正在测试高德地图API...</p>';
+
+        // 检查AMap对象是否加载成功
+        if (typeof AMap === 'undefined') {
+            resultDiv.innerHTML = '<p class="error">❌ 高德地图API加载失败</p>';
+            return;
+        }
+
+        resultDiv.innerHTML = '<p class="success">✅ 高德地图API加载成功</p>';
+
+        // 测试Geolocation插件
+        AMap.plugin('AMap.Geolocation', function() {
+            resultDiv.innerHTML += '<p class="success">✅ Geolocation插件加载成功</p>';
+
+            const geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            });
+
+            geolocation.getCurrentPosition(function(status, result) {
+                if (status === 'complete') {
+                    resultDiv.innerHTML += `
+                    <p class="success">✅ 高德定位成功！</p>
+                    <p>地址: ${result.formattedAddress}</p>
+                    <p>精度: ${result.accuracy} 米</p>
+                `;
+                } else {
+                    resultDiv.innerHTML += `<p class="error">❌ 高德定位失败: ${result.message || result.info}</p>`;
+                }
+            });
+        });
+    }
+
+    // 测试完整定位流程
+    function testFullLocation() {
+        const resultDiv = document.getElementById('fullResult');
+        resultDiv.innerHTML = '<p class="info">开始完整定位流程测试...</p>';
+
+        // 先尝试浏览器定位
+        testBrowserGeolocation();
+
+        // 再尝试高德定位
+        testAMapAPI();
+    }
+
+    // 页面加载时显示环境信息
+    showEnvInfo();
+</script>
+</body>
+</html>

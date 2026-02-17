@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: FireflyMall-AuthGate
+  cloud:
+    nacos:
+      server-addr: server:8848
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: JDBC.yaml
+          - data-id: Cancel-Verification.yaml
+          - data-id: other.yaml

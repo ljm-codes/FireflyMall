@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fm.mapper.DorisMapper">
+
+    <select id="getAllIdTopNData" resultType="POJO.DW.IdTopNByDoris">
+        select *
+        from idTopN
+    </select>
+
+    <select id="getAllSearchTopNData" resultType="POJO.DW.SearchTopNByDoris">
+        select *
+        from searchTopN
+    </select>
+
+    <select id="getAllCartTopNData" resultType="POJO.DW.cartTopNByDoris">
+        select *
+        from cartTopN
+    </select>
+
+    <select id="getAllCreateOrderTopNData" resultType="POJO.DW.CreateOrderTopNByDoris">
+        select *
+        from createOrderTopN
+    </select>
+
+    <select id="getAllCategoryOrBrandTopNData" resultType="POJO.DW.CategoryOrBrandTopNByDoris">
+        select *
+        from categoryOrBrandTopN
+    </select>
+
+    <select id="getAllUserIpRegionTopNData" resultType="POJO.DW.UserIpRegionTopNByDoris">
+        select *
+        from userIpRegionTopN
+    </select>
+
+    <select id="getAllConvertCount" resultType="POJO.ADS.FunnelResult">
+        select *
+        from convertCount
+    </select>
+
+    <select id="getAllIntervalTime" resultType="POJO.ADS.IntervalResult">
+        select *
+        from intervalTime
+    </select>
+
+    <select id="getAllTypeRate" resultType="POJO.ADS.SuccessRateWindowResult">
+        select *
+        from typeRate
+    </select>
+
+    <select id="getAllOrderAmountTopNData" resultType="POJO.ADS.Amount">
+        select *
+        from orderAmountTopN
+    </select>
+
+    <select id="getAllPayStatus" resultType="POJO.DW.PayStatusByDoris">
+        select *
+        from payStatus
+    </select>
+
+    <select id="getAllClarifyRecommendedData" resultType="POJO.DW.RecommendDataByDoris">
+        select * from clarifyUserRecommendData where userId = #{userId}
+    </select>
+    <select id="getAllUnclearRecommendedData" resultType="POJO.DW.RecommendDataByDoris">
+        select * from unclearUserRecommendData where userId = #{userId}
+    </select>
+
+
+</mapper>

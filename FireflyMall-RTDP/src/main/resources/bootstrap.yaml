@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: FireflyMall-RTDP
+  cloud:
+    nacos:
+      server-addr: server:8848
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: JDBC.yaml
+#          - data-id: Redis.yaml
+          - data-id: Cancel-Verification.yaml
+          - data-id: other.yaml

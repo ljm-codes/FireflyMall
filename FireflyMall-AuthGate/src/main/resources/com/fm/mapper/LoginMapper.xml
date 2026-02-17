@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fm.mapper.LoginMapper">
+
+    <select id="selectUserInfoByUsernameAndPassword" resultType="POJO.Login.UserInfo"
+            parameterType="POJO.Login.UserInfo">
+        select * from userInfo where username = #{username}
+    </select>
+
+    <select id="selectIsOldKeyByVersion" resultType="java.lang.Integer">
+        select IF(#{version} != (select KeyVersion
+                   from jwtKey
+                   order by CreateTime DESC
+                   limit 1), true, false) as IsOldKey
+    </select>
+
+
+</mapper>

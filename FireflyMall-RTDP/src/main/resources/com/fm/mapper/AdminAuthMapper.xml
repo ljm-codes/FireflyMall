@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fm.mapper.AdminAuthMapper">
+
+    <select id="login" resultType="POJO.Login.AdminLoginRequest">
+        select * from administrator where adminName = #{name}
+    </select>
+
+    <select id="auth" resultType="POJO.Login.AdminLoginRequest">
+        select * from administrator where adminName = #{adminName} and permission = #{permission}
+    </select>
+
+    <select id="userAuth" resultType="POJO.Login.UserInfo">
+        select * from userinfo where id = #{id} and username = #{name}
+    </select>
+
+</mapper>

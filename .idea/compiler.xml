@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="FireflyMall-cart" />
+        <module name="FireflyMall-Merchant" />
+        <module name="FireflyMall-Tool" />
+        <module name="FireflyMall-Orders" />
+        <module name="FireflyMallAuthGate" />
+        <module name="FireflyMall-ProductShow" />
+        <module name="FireflyMall-RTDP" />
+        <module name="FireflyMall-GateMay" />
+        <module name="FireflyMall-Pay" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="FireflyMall-AuthGate" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FireflyMall" options="" />
+      <module name="FireflyMall-AuthGate" options="" />
+      <module name="FireflyMall-GateMay" options="-parameters" />
+      <module name="FireflyMall-Merchant" options="-parameters" />
+      <module name="FireflyMall-Orders" options="-parameters" />
+      <module name="FireflyMall-Pay" options="-parameters" />
+      <module name="FireflyMall-ProductShow" options="-parameters" />
+      <module name="FireflyMall-RTDP" options="-parameters" />
+      <module name="FireflyMall-Tool" options="-parameters" />
+      <module name="FireflyMall-cart" options="-parameters" />
+      <module name="FireflyMallAuthGate" options="-parameters" />
+    </option>
+  </component>
+</project>

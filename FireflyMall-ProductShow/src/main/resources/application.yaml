@@ -1,0 +1,13 @@
+server:
+  port: 8082
+  address: 0.0.0.0
+
+spring:
+  elasticsearch:
+    uris: http://server:9200
+
+FireflyMall:
+  db:
+    host: localhost
+    port: 3306
+

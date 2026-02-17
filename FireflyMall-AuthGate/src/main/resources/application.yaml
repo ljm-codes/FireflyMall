@@ -1,0 +1,31 @@
+server:
+  port: 8081
+  address: 0.0.0.0
+#  tomcat:
+#    threads:
+#      max: 10 # 最大存在线程数。默认是200.
+#    accept-count: 10 # 最大等待连接数。默认是100.
+#    max-connections: 20 # 最大线程数。默认是8192.
+
+spring:
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true # 开启OkHttp客户端。用连接池管理连接，提高性能。
+    sentinel:
+      transport:
+        dashboard: localhost:8090
+      http-method-specify: true # 开启HTTP方法指定。默认是false，开启后可以在Sentinel控制台中看到HTTP方法。
+
+FireflyMall:
+  db:
+    host: localhost
+    port: 3306
+
+seata:
+  tx-service-group: FireflyMall # 您已配置的事务组
+  service:
+    vgroup-mapping:
+      FireflyMall: "default"    # 您已配置的映射
+      default_tx_group: "default" # 新增的默认事务组映射
+  data-source-proxy-mode: AT
