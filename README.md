@@ -6,6 +6,6 @@
 
 他们这些项目我将会分开管理，每个项目都有自己的仓库和代码
 
-- 关于 `大数据` 请看 （还没分发，已写）
+- 关于 `大数据` 请看 [BigData](https://github.com/ljm-codes/fireflymall-BigData)
 - 关于 `Agent` 请看 [智能客服](https://github.com/ljm-codes/fireflymall-ai-customer-service)
 
